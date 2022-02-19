@@ -6,6 +6,18 @@ request.onupgradeneeded = function(event) {
   db.createObjectStore('new_trans', { autoIncrement: true });
 };
 
+request.onsuccess = function(event) {
+  db = event.target.result;
+
+  if (navigator.onLine) {
+    uploadTrans();
+  }
+};
+
+request.onerror = function(event) {
+  console.log(event.target.errorCode);
+};
+
 function uploadTrans() {
   const transaction = db.transaction(['new_trans'], 'readwrite');
   const transObjectStore = transaction.objectStore('new_trans');
@@ -37,24 +49,13 @@ function uploadTrans() {
   }
 };
 
-request.onsuccess = function(event) {
-  db = event.target.result;
-
-  if (navigator.onLine) {
-    uploadTrans();
-  }
-};
-
-request.onerror = function(event) {
-  console.log(event.target.errorCode);
-};
-
 // this function will execute if there's no internet connection and a transaction is submitted by the client
 function saveRecord(record) {
   const transaction = db.transaction(['new_trans'], 'readwrite');
   const transObjectStore = transaction.objectStore('new_trans');
 
   transObjectStore.add(record);
+  alert('You are currently offline but your transaction has been saved locally and will be sent to the server as soon as your internet connection is re-established.');
 };
 
 window.addEventListener('online', uploadTrans);
