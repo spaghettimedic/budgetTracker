@@ -45,7 +45,7 @@
   ],
   "theme_color": "#ffffff",
   "background_color": "#01579b",
-  "start_url": "public/index.html",
+  "start_url": "https://spaghettimedic-budget-tracker.herokuapp.com/",
   "fingerprints": false,
   "inject": false,
   "display": "standalone"
