@@ -1,4 +1,6 @@
-# Budget Tracker 
+# Budget Tracker
+
+![plot](./assets/images/main.png)
 
 ## Description
 Budget Tracker is a Progressive Web Application for tracking your money whether it be deposits or expenses.
